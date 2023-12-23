@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "gw+TVxtZvfIf+fbpP+7AdEnWga1GD6/n4NmS/+82XTk=",
+  "Hash": "JJfcU2m5nbKRDKqr7k5WP30DekI4XsIwjo2aZcsPXKE=",
   "Source": "BookingTour",
   "BasePath": "_content/BookingTour",
   "Mode": "Default",
@@ -40951,6 +40951,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\Screenshot (1).png"
+    },
+    {
+      "Identity": "C:\\Users\\ADMIN\\BookingTour\\wwwroot\\uploads\\Screenshot (2).png",
+      "SourceId": "BookingTour",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ADMIN\\BookingTour\\wwwroot\\",
+      "BasePath": "_content/BookingTour",
+      "RelativePath": "uploads/Screenshot (2).png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\Screenshot (2).png"
     },
     {
       "Identity": "C:\\Users\\ADMIN\\BookingTour\\wwwroot\\uploads\\Screenshot 2023-03-03 101832.png",
