@@ -1,0 +1,100 @@
+﻿@model BookingTour.Models.Tours
+@inject TourContext _context;
+@{
+    ViewData["Title"] = "Chi tiết tour";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="max-w-[600px] flex flex-col gap-3">
+        <div class="font-bold text-[24px]">Thông tin chuyến đi @Model.Name</div>
+        <div class="flex">
+            <div class="w-[50%] font-medium">
+                @Html.DisplayNameFor(model => model.Name)
+            </div>
+            <div class="w-[50%]">
+                @Html.DisplayFor(model => model.Name)
+            </div>
+        </div>
+
+        <div class="flex ">
+        <div class="w-[50%] font-medium">
+                @Html.DisplayNameFor(model => model.Description)
+            </div>
+            <div class="w-[50%]">
+                @Html.DisplayFor(model => model.Description)
+            </div>
+        </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.Rate)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.Rate)
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.PriceAdult)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.PriceAdult) VND
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.PriceChildren)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.PriceChildren)  VND
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.AvailableSeats)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.AvailableSeats)
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.Slug)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.Slug)
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.StartDate)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.StartDate)
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.EndDate)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.EndDate)
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.Location)
+        </div>
+        <div class="w-[50%]">
+            @{
+                var locationName = _context.locations.FirstOrDefault(l => Model.LocationID == l.Id)?.Name;
+                @locationName
+            }
+        </div>
+    </div>
+</div>
+<div class="mt-[20px]">
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a> |
+    <a class="btn btn-primary" asp-action="Index">Quay lại</a>
+</div>

@@ -1,0 +1,119 @@
+﻿@model BookingTour.Models.Booking
+@inject TourContext _context;
+@{
+    ViewData["Title"] = "Chi tiết đặt tour";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+<script src="https://cdn.tailwindcss.com"></script>
+<div class="max-w-[600px] flex flex-col gap-3">
+    <div class="font-bold text-[24px]">Thông tin đặt chuyến đi</div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.CustomerID)
+        </div>
+    </div>
+
+    <div class="flex ">
+        <div class="w-[50%] font-medium">
+            Tên chuyến đi
+        </div>
+        <div class="w-[50%]">
+            @{
+                var tourName = _context.tours.FirstOrDefault(t => t.Id == Model.TourID)?.Name;
+                @tourName
+            }        
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.BookingDate)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.BookingDate)
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.NumberOfAdult)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.NumberOfAdult)
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.NumberOfChildren)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.NumberOfChildren)  
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.TotalAmount)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.TotalAmount)
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.Status)
+        </div>
+        <div class="w-[50%]">
+            <td>
+                @if (Model.Status == 1)
+                {
+                    <text>Thành công</text>
+                }
+                else if (Model.Status == 3)
+                {
+                    <text>Chờ thanh toán</text>
+                }
+                else
+                {
+                    <text>Đã hủy</text>
+                }
+            </td>
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.CreatedDate)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.CreatedDate)
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.CreatedBy)
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.ModifierDate)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.ModifierDate)
+        </div>
+    </div>
+    <div class="flex">
+        <div class="w-[50%] font-medium">
+            @Html.DisplayNameFor(model => model.ModifierBy)
+        </div>
+        <div class="w-[50%]">
+            @Html.DisplayFor(model => model.ModifierBy)
+        </div>
+    </div>
+</div>
+<div class="mt-[24px]">
+    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a> |
+    <a class="btn btn-primary" asp-action="Index">Quay lại</a>
+</div>

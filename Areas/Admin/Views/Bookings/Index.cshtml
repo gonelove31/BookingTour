@@ -1,0 +1,99 @@
+﻿@model X.PagedList.IPagedList<Booking>
+@using BookingTour.Common
+@inject TourContext _context;
+<link rel="stylesheet" href="~/css/custom-paging.css">
+@{
+    @using X.PagedList.Mvc.Core;
+    ViewData["Title"] = "Quản lý đặt tour";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<script src="https://cdn.tailwindcss.com"></script>
+<div style="display: flex; justify-content: space-between; margin-bottom: 24px;">
+    <a class="btn-primary btn" asp-action="Create">Tạo mới</a>
+    <a class="btn-primary btn" asp-action="ExportPdfBooking">Xuất PDF</a>
+    
+</div>
+<table style="min-height: 500px;" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CustomerID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().BookingDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().NumberOfAdult)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().NumberOfChildren)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().TotalAmount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Status)
+            </th>
+            <th>
+                Chuyến đi
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BookingDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfAdult)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NumberOfChildren)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalAmount) VND
+                </td>
+                <td>
+                    @if (item.Status == 1)
+                    {
+                        <text>Thành công</text>
+                    }
+                    else if (item.Status == 3)
+                    {
+                        <text>Chờ thanh toán</text>
+                    }
+                    else
+                    {
+                        <text>Đã hủy</text>
+                    }
+                </td>
+                <td>
+                    @{
+                        var tourName = _context.tours.FirstOrDefault(t => t.Id == item.TourID)?.Name;
+                        @tourName
+                    }
+                </td>
+                <td>
+                    <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.Id">Sửa</a> |
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.Id">Chi tiết</a> |
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Xóa</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@if (Model.Count() >= 1)
+{
+    <ul class="pagination pagination-sm">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }))
+    </ul>
+}
